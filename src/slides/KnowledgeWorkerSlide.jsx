@@ -41,7 +41,7 @@ export default function KnowledgeWorkerSlide({ index, project }) {
           <div className={styles.card}>
             <div className={styles.cardIcon}>🧩</div>
             <h3>Real Components</h3>
-            <p>Cards, badges, buttons, animations — not clip art. Built on React, Tailwind, and shadcn/ui. Extend anything.</p>
+            <p>Cards, badges, buttons, animations — not clip art. Built on a modern component architecture you can extend.</p>
           </div>
 
           <div className={styles.card}>

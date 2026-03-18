@@ -3,6 +3,20 @@
   padding: 0 0 44px 0;
 }
 
+.scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    color-mix(in srgb, var(--foreground) 2%, transparent) 2px,
+    color-mix(in srgb, var(--foreground) 2%, transparent) 4px
+  );
+}
+
 .orb1 {
   width: 440px;
   height: 440px;
@@ -29,33 +43,66 @@
   );
 }
 
+.orb3 {
+  width: 180px;
+  height: 180px;
+  top: 50%;
+  left: 45%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--cyan),
+    color-mix(in srgb, var(--cyan) 10%, transparent) 60%,
+    transparent 75%
+  );
+}
+
 .body {
   position: relative;
   z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .eyebrow {
-  font-size: 12px;
+  font-family: monospace;
+  font-size: 13px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
+  letter-spacing: 1.5px;
   color: var(--accent);
 }
 
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 .title {
-  font-size: clamp(32px, 4vw, 54px);
+  font-size: clamp(30px, 3.8vw, 50px);
   font-weight: 900;
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -2px;
+}
+
+.mono {
+  font-family: monospace;
+  color: var(--cyan);
+  font-weight: 400;
+}
+
+.pipe {
+  color: var(--accent);
+  font-weight: 400;
 }
 
 .highlight {
@@ -65,35 +112,74 @@
   background-clip: text;
 }
 
+/* Terminal prompt */
+
 .prompt {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 20px;
-  background: var(--secondary);
+  flex-direction: column;
+  background: color-mix(in srgb, var(--background) 80%, black);
   border: 1px solid var(--border);
   border-radius: 10px;
-  max-width: 720px;
+  overflow: hidden;
+  max-width: 760px;
 }
 
-.promptIcon {
-  font-size: 18px;
-  line-height: 1.4;
+.promptHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot[data-color="red"] { background: #ff5f57; }
+.dot[data-color="yellow"] { background: #febc2e; }
+.dot[data-color="green"] { background: #28c840; }
+
+.promptFile {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--muted-foreground);
+  margin-left: 8px;
+}
+
+.promptBody {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.promptPrefix {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cyan);
   flex-shrink: 0;
+  line-height: 1.5;
 }
 
-.prompt p {
-  font-size: 13.5px;
+.promptBody p {
+  font-family: monospace;
+  font-size: 12.5px;
   font-weight: 400;
-  font-style: italic;
   color: var(--muted-foreground);
   line-height: 1.5;
 }
 
+/* Comparison panels */
+
 .comparison {
   display: flex;
-  align-items: center;
-  gap: 24px;
+  align-items: stretch;
+  gap: 16px;
   flex: 1;
   min-height: 0;
 }
@@ -102,15 +188,48 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
   min-height: 0;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.statusDot[data-status="old"] {
+  background: var(--muted-foreground);
+  box-shadow: 0 0 6px var(--muted-foreground);
+}
+
+.statusDot[data-status="new"] {
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 6px var(--cyan); }
+  50% { box-shadow: 0 0 14px var(--cyan); }
 }
 
 .label {
+  font-family: monospace;
   font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-weight: 600;
   color: var(--muted-foreground);
 }
 
@@ -118,20 +237,123 @@
   color: var(--cyan);
 }
 
-.screenshot {
-  width: 100%;
-  height: auto;
-  max-height: 340px;
-  object-fit: contain;
-  object-position: top left;
-  border-radius: 10px;
-  border: 1px solid var(--border);
+.tag {
+  font-family: monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: auto;
+  background: color-mix(in srgb, var(--muted-foreground) 15%, transparent);
+  color: var(--muted-foreground);
 }
 
-.arrow {
-  font-size: 32px;
-  font-weight: 900;
-  color: var(--accent);
+.tagSuccess {
+  background: color-mix(in srgb, var(--cyan) 15%, transparent);
+  color: var(--cyan);
+}
+
+.imgWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.screenshot {
+  width: 100%;
+  height: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  object-position: top left;
+  display: block;
+  padding: 6px;
+}
+
+.glitchOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    color-mix(in srgb, var(--accent) 4%, transparent) 3px,
+    color-mix(in srgb, var(--accent) 4%, transparent) 6px
+  );
+  mix-blend-mode: overlay;
+}
+
+.glowOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    color-mix(in srgb, var(--cyan) 6%, transparent),
+    transparent 70%
+  );
+}
+
+/* Diff arrow */
+
+.diffArrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   flex-shrink: 0;
-  padding-top: 24px;
+  padding: 20px 0;
+}
+
+.diffLine {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+}
+
+.diffIcon {
+  font-size: 22px;
+  filter: drop-shadow(0 0 8px var(--accent));
+  animation: zap 2s ease-in-out infinite;
+}
+
+@keyframes zap {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Stats bar */
+
+.stats {
+  display: flex;
+  gap: 32px;
+  padding: 12px 0 0 0;
+}
+
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.statValue {
+  font-family: monospace;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--cyan);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--cyan) 40%, transparent);
+}
+
+.statLabel {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  letter-spacing: 0.5px;
 }

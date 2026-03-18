@@ -9,42 +9,89 @@ export default function BeforeAfterSlide({ index, project }) {
       <div className="accent-bar" />
       <div className={`orb ${styles.orb1}`} />
       <div className={`orb ${styles.orb2}`} />
+      <div className={`orb ${styles.orb3}`} />
+      <div className={styles.scanlines} />
 
       <div className={`${styles.body} content-frame content-gutter`}>
         <div className={styles.header}>
-          <p className={styles.eyebrow}>Sketch → Slide</p>
+          <p className={styles.eyebrow}>
+            <span className={styles.blink}>▌</span> sketch_to_slide.exe
+          </p>
           <h1 className={styles.title}>
-            From napkin to <span className={styles.highlight}>polished deck</span>
+            <span className={styles.mono}>$</span> napkin{' '}
+            <span className={styles.pipe}>|</span>{' '}
+            <span className={styles.highlight}>polished_deck</span>
           </h1>
         </div>
 
         <div className={styles.prompt}>
-          <span className={styles.promptIcon}>💬</span>
-          <p>
-            "Based on this draft, explain who is Deckio for and add a sick CTA
-            including the Deckio's mascot"
-          </p>
+          <div className={styles.promptHeader}>
+            <span className={styles.dot} data-color="red" />
+            <span className={styles.dot} data-color="yellow" />
+            <span className={styles.dot} data-color="green" />
+            <span className={styles.promptFile}>copilot-chat</span>
+          </div>
+          <div className={styles.promptBody}>
+            <span className={styles.promptPrefix}>&gt;</span>
+            <p>
+              Based on this draft, explain who is Deckio for and add a sick CTA
+              including the Deckio's mascot
+            </p>
+          </div>
         </div>
 
         <div className={styles.comparison}>
           <div className={styles.panel}>
-            <span className={styles.label}>Before</span>
-            <img
-              src={sketchBefore}
-              alt="Hand-drawn sketch"
-              className={styles.screenshot}
-            />
+            <div className={styles.panelHeader}>
+              <span className={styles.statusDot} data-status="old" />
+              <span className={styles.label}>input.sketch</span>
+              <span className={styles.tag}>RAW</span>
+            </div>
+            <div className={styles.imgWrap}>
+              <img
+                src={sketchBefore}
+                alt="Hand-drawn sketch"
+                className={styles.screenshot}
+              />
+              <div className={styles.glitchOverlay} />
+            </div>
           </div>
 
-          <div className={styles.arrow}>→</div>
+          <div className={styles.diffArrow}>
+            <span className={styles.diffLine} />
+            <span className={styles.diffIcon}>⚡</span>
+            <span className={styles.diffLine} />
+          </div>
 
           <div className={styles.panel}>
-            <span className={`${styles.label} ${styles.labelAfter}`}>After</span>
-            <img
-              src={slideAfter}
-              alt="Final polished slide"
-              className={styles.screenshot}
-            />
+            <div className={styles.panelHeader}>
+              <span className={styles.statusDot} data-status="new" />
+              <span className={`${styles.label} ${styles.labelAfter}`}>output.slide</span>
+              <span className={`${styles.tag} ${styles.tagSuccess}`}>RENDERED</span>
+            </div>
+            <div className={styles.imgWrap}>
+              <img
+                src={slideAfter}
+                alt="Final polished slide"
+                className={styles.screenshot}
+              />
+              <div className={styles.glowOverlay} />
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.stats}>
+          <div className={styles.stat}>
+            <span className={styles.statValue}>1</span>
+            <span className={styles.statLabel}>prompt</span>
+          </div>
+          <div className={styles.stat}>
+            <span className={styles.statValue}>0</span>
+            <span className={styles.statLabel}>drag & drops</span>
+          </div>
+          <div className={styles.stat}>
+            <span className={styles.statValue}>∞</span>
+            <span className={styles.statLabel}>vibes</span>
           </div>
         </div>
       </div>

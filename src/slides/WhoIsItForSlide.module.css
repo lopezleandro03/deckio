@@ -1,0 +1,181 @@
+.whoIsItFor {
+  background: var(--background);
+  padding: 0 0 44px 0;
+}
+
+.orb1 {
+  width: 480px;
+  height: 480px;
+  top: -120px;
+  right: -80px;
+  background: radial-gradient(
+    circle at 40% 40%,
+    var(--accent),
+    color-mix(in srgb, var(--accent) 25%, transparent) 50%,
+    transparent 70%
+  );
+}
+
+.orb2 {
+  width: 340px;
+  height: 340px;
+  bottom: -60px;
+  left: -60px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--purple-deep),
+    color-mix(in srgb, var(--purple-deep) 25%, transparent) 60%,
+    transparent 75%
+  );
+}
+
+.orb3 {
+  width: 220px;
+  height: 220px;
+  bottom: 30%;
+  right: 10%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--cyan),
+    color-mix(in srgb, var(--cyan) 12%, transparent) 60%,
+    transparent 75%
+  );
+}
+
+.body {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--accent);
+}
+
+.title {
+  font-size: clamp(38px, 4.5vw, 64px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -2px;
+}
+
+.highlight {
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 4px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--accent));
+  opacity: 0.5;
+}
+
+.cardIcon {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--foreground);
+}
+
+.card p {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  line-height: 1.55;
+}
+
+/* CTA */
+
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 8px;
+  padding: 20px 28px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.ctaMascot {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px color-mix(in srgb, var(--accent) 50%, transparent));
+}
+
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ctaText {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: -0.2px;
+}
+
+.ctaAction {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ctaAction code {
+  font-family: monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.3px;
+}
+
+.ctaArrow {
+  font-size: 18px;
+  color: var(--accent);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(4px); }
+}

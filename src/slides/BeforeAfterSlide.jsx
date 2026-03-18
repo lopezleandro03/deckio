@@ -34,7 +34,7 @@ export default function BeforeAfterSlide({ index, project }) {
           <div className={styles.promptBody}>
             <span className={styles.promptPrefix}>&gt;</span>
             <p>
-              Based on this draft, explain who is Deckio for and add a sick CTA
+              Based on this sketch, explain who is Deckio for and add a sick CTA
               including the Deckio's mascot. Make it geeky.
             </p>
           </div>
@@ -81,13 +81,14 @@ export default function BeforeAfterSlide({ index, project }) {
         </div>
 
         <div className={styles.stats}>
+          <img src={mascot} alt="Deckio mascot" className={styles.statsMascot} />
+          <div className={styles.stat}>
+            <span className={styles.statValue}>1</span>
+            <span className={styles.statLabel}>sketch</span>
+          </div>
           <div className={styles.stat}>
             <span className={styles.statValue}>1</span>
             <span className={styles.statLabel}>prompt</span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.statValue}>0</span>
-            <span className={styles.statLabel}>sketch</span>
           </div>
           <div className={styles.stat}>
             <span className={styles.statValue}>∞</span>

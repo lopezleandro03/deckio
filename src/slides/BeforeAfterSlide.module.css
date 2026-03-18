@@ -121,7 +121,7 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
-  max-width: 760px;
+  max-width: 100%;
 }
 
 .promptHeader {

@@ -15,7 +15,7 @@ export default function BeforeAfterSlide({ index, project }) {
       <div className={`${styles.body} content-frame content-gutter`}>
         <div className={styles.header}>
           <p className={styles.eyebrow}>
-            <span className={styles.blink}>▌</span> sketch_to_slide.exe
+            <span className={styles.blink}>▌</span> deckio sketch-to-slide skill
           </p>
           <h1 className={styles.title}>
             <span className={styles.mono}>$</span> napkin{' '}
@@ -29,7 +29,7 @@ export default function BeforeAfterSlide({ index, project }) {
             <span className={styles.dot} data-color="red" />
             <span className={styles.dot} data-color="yellow" />
             <span className={styles.dot} data-color="green" />
-            <span className={styles.promptFile}>copilot-chat</span>
+            <span className={styles.promptFile}>the prompt</span>
           </div>
           <div className={styles.promptBody}>
             <span className={styles.promptPrefix}>&gt;</span>

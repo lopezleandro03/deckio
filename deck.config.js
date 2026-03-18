@@ -4,6 +4,7 @@ import KnowledgeWorkerSlide from './src/slides/KnowledgeWorkerSlide.jsx'
 import EngineerSlide from './src/slides/EngineerSlide.jsx'
 import GetStartedSlide from './src/slides/GetStartedSlide.jsx'
 import WhoIsItForSlide from './src/slides/WhoIsItForSlide.jsx'
+import BeforeAfterSlide from './src/slides/BeforeAfterSlide.jsx'
 import { GenericThankYouSlide as ThankYouSlide } from '@deckio/deck-engine'
 
 export default {
@@ -22,6 +23,7 @@ export default {
     EngineerSlide,
     GetStartedSlide,
     WhoIsItForSlide,
+    BeforeAfterSlide,
     ThankYouSlide,
   ],
 }

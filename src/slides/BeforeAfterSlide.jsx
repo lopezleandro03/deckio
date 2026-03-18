@@ -1,4 +1,5 @@
 import { BottomBar, Slide } from '@deckio/deck-engine'
+import mascot from '../data/deckio-mascot.png'
 import sketchBefore from '../data/sketch-before.jpg'
 import slideAfter from '../data/slide-after.png'
 import styles from './BeforeAfterSlide.module.css'

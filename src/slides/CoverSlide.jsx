@@ -13,7 +13,7 @@ export default function CoverSlide() {
         <div className={styles.content}>
           <p className={styles.eyebrow}>deckio</p>
           <h1>
-            <span className={styles.highlight}>Deckio!</span>
+            <span className={styles.highlight}>deckio rocks</span>
           </h1>
           <p className={styles.subtitle}>
             A presentation built with deck-engine
